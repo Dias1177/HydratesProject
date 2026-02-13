@@ -1,156 +1,28 @@
-# HydratesProject
 Gas Hydrate Formation Prediction in Pipelines using Machine Learning
 
-This project focuses on predicting gas hydrate formation in oil and gas pipelines using machine learning models.
-The goal is to reduce аварийные риски, экономические потери и экологический ущерб за счёт раннего выявления опасных режимов.
+This project explores the use of machine learning to predict gas hydrate formation in oil and gas pipelines. Gas hydrates form under low temperatures and high pressures in the presence of water. Their formation can lead to pipeline blockages, pressure buildup, mechanical damage, production shutdowns, and environmental incidents.
 
-📌 Problem Statement
+Traditional prevention methods such as methanol injection, heating, and pressure regulation are often expensive and applied uniformly along the pipeline rather than precisely where risk is highest. This project investigates whether machine learning can help detect dangerous operating regimes in advance and support smarter prevention strategies.
 
-Gas hydrates form under:
+The task is formulated as a binary classification problem. The model predicts whether hydrate formation will occur (1 — dangerous regime) or not (0 — safe regime) based on operational parameters. In this version of the project, temperature (°C) and pressure (bar) are used as input features.
 
-Low temperature
+Two machine learning models are implemented and compared:
 
-High pressure
+Logistic Regression — chosen for its interpretability and ability to clearly show how each feature influences the prediction.
 
-Presence of water
+Random Forest — chosen for its ability to capture nonlinear relationships and interactions between features.
 
-Their formation can lead to:
+The workflow includes data loading, preprocessing, train-test splitting (80/20 with stratification), model training, evaluation, and visualization of decision boundaries. Model performance is evaluated using accuracy, precision, recall, F1-score, and confusion matrices.
 
-Pipeline blockage
+Because this is a safety-related problem, minimizing false negatives (missing a dangerous hydrate event) is more important than simply maximizing accuracy. Special attention is given to recall for the hydrate class and analysis of the false negative rate.
 
-Pressure buildup
+Both models achieve high predictive performance (around 90% accuracy). Logistic Regression provides clearer interpretability and strong control over false negatives, while Random Forest captures more complex decision boundaries. Feature importance analysis confirms that temperature and pressure are the dominant factors influencing hydrate formation, which is consistent with physical theory.
 
-Mechanical failure
+This project demonstrates how machine learning can complement traditional engineering methods and potentially improve safety, reduce unnecessary inhibitor usage, and support risk-based operational decision-making in the oil and gas industry.
 
-Oil/gas spills
+Future improvements may include adding physically derived features (such as distance to hydrate phase boundary), cost-sensitive learning to penalize dangerous errors more heavily, threshold optimization for safety-focused deployment, and extension to time-series models to account for dynamic operating conditions.
 
-Traditional prevention methods (methanol injection, heating, pressure regulation) are expensive and not always applied precisely.
-
-This project explores whether machine learning can predict hydrate formation based on operational parameters.
-
-🎯 Objective
-
-Develop and compare machine learning models that predict hydrate formation using:
-
-Temperature (°C)
-
-Pressure (bar)
-
-The task is formulated as a binary classification problem:
-
-1 — Hydrate formation (dangerous regime)
-
-0 — No hydrate formation
-
-Special attention is given to minimizing false negatives, since missing a hydrate event can lead to аварии.
-
-🧠 Models Used
-
-Two models were implemented and compared:
-
-1️⃣ Logistic Regression
-
-Interpretable
-
-Linear decision boundary
-
-Allows coefficient analysis
-
-2️⃣ Random Forest
-
-Non-linear model
-
-Robust to noise
-
-Provides feature importance
-
-⚙️ Pipeline
-
-Data loading from Excel
-
-Feature selection (Temperature, Pressure)
-
-Train/Test split (80/20, stratified)
-
-Model training
-
-Performance evaluation:
-
-Accuracy
-
-Precision
-
-Recall
-
-F1-score
-
-Confusion matrix
-
-Decision boundary visualization
-
-Feature importance analysis
-
-📊 Evaluation Metrics
-
-Since this is a safety-critical task, overall accuracy is not the only focus.
-
-Important metrics:
-
-Recall for hydrate class
-
-False Negative Rate (FNR)
-
-Confusion Matrix analysis
-
-Missing a hydrate (FN) is considered more critical than a false alarm (FP).
-
-📈 Results
-
-Both models achieved high predictive performance (~90% accuracy).
-
-Observations:
-
-Logistic Regression showed better control over false negatives.
-
-Random Forest captured non-linear patterns but sometimes missed rare dangerous states.
-
-Temperature and Pressure were confirmed as dominant features.
-
-📂 Repository Structure
-├── data/
-│   └── 2gas_hydrate_phase_based.xlsx
-├── notebooks/
-│   └── hydrate_prediction.ipynb
-├── src/
-│   └── model_training.py
-├── README.md
-
-🔬 Future Improvements
-
-Add engineered physical features (distance to hydrate phase boundary)
-
-Implement cost-sensitive learning
-
-Optimize classification threshold
-
-Extend to time-series prediction
-
-Apply LSTM for dynamic behavior modeling
-
-🌍 Practical Impact
-
-This approach can:
-
-Reduce unnecessary inhibitor usage
-
-Lower operational costs
-
-Improve environmental safety
-
-Support real-time risk monitoring systems
-
-📌 Author
-
-Sanakul Salim
-Nazarbayev Intellectual School (Astana)
+Author:
+Sanakul Salim, Zhumatayev Dias
+Nazarbayev Intellectual School, Astana
 2025
